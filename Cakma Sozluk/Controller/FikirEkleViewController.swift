@@ -30,9 +30,13 @@ class FikirEkleViewController: UIViewController {
     }
     @IBAction func paylasButtonPressed(_ sender: UIButton) {
         guard let fikirText = fikirTextView.text else { return }
-        db.collection("Fikirler").addDocument(data: [
-            "categoryName" : chosenCategory,
-            "fikir" : fikirText,
+        db.collection(FIKIRLER).addDocument(data: [
+            CATEGORYNAME : chosenCategory,
+            FIKIRTEXT : fikirText,
+            KULLANICIADI : "Test kullanıcısı 1",
+            BEGENISAYISI : 0,
+            YORUMSAYISI : 0,
+            EKLENMETARİHİ : FieldValue.serverTimestamp()
         ]) { error  in
             if let error {
                 print(error.localizedDescription)
