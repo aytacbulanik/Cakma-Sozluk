@@ -36,7 +36,7 @@ class FikirEkleViewController: UIViewController {
             KULLANICIADI : "Test kullanıcısı 1",
             BEGENISAYISI : 0,
             YORUMSAYISI : 0,
-            EKLENMETARİHİ : FieldValue.serverTimestamp()
+            EKLENMETARIHI : FieldValue.serverTimestamp()
         ]) { error  in
             if let error {
                 print(error.localizedDescription)
