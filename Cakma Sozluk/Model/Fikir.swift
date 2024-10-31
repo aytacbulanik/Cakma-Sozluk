@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 class Fikir {
     private(set) var kullaniciAdi : String
@@ -24,5 +25,24 @@ class Fikir {
         self.begeniSayisi = begeniSayisi
         self.yorumSayisi = yorumSayisi
         self.documentId = documentId
+    }
+    
+    static func getFikir(snapShot : QuerySnapshot?) -> [Fikir] {
+        var fikirler = [Fikir]()
+        guard let snap = snapShot else { return fikirler}
+        for veri in snap.documents {
+            let documentID = veri.documentID
+            let data = veri.data()
+            let kullaniciAdi = data[KULLANICIADI] as? String ?? ""
+            let categoryName = data[CATEGORYNAME] as? String ?? ""
+            let fikirText = data[FIKIRTEXT] as? String ?? ""
+            let begeniSayisi = data[BEGENISAYISI] as? Int ?? -1
+            let yorumSayisi = data[YORUMSAYISI] as? Int ?? -1
+            let serverDate = data[EKLENMETARIHI] as? Timestamp ?? Timestamp()
+            let eklenmeTarihi = serverDate.dateValue()
+            let newFikir = Fikir(kullaniciAdi: kullaniciAdi, fikirText: fikirText, categoryName: categoryName, eklenmeTarihi: eklenmeTarihi, begeniSayisi: begeniSayisi, yorumSayisi: yorumSayisi , documentId: documentID)
+            fikirler.append(newFikir)
+        }
+        return fikirler
     }
 }

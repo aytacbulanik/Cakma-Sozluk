@@ -20,7 +20,20 @@ class FikirTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
+    func gorunumAyarla(fikir : Fikir) {
+        kullaniciAdiLabel.text = fikir.kullaniciAdi
+        begeniImageView.image = UIImage(systemName: "star")
+        fikirTextLabel.text = fikir.fikirText
+        begeniSayisiLabel.text = String(fikir.begeniSayisi)
+        eklenmeTarihiLabel.text = showTarih(zaman: fikir.eklenmeTarihi)
+    }
+    
+    func showTarih(zaman : Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.YY - HH:mm"
+        return formatter.string(from: zaman)
+    }
    
 
 }

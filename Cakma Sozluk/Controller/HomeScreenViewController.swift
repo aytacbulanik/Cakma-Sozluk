@@ -33,29 +33,30 @@ class HomeScreenViewController: UIViewController {
     }
     
     func getFikir() {
-        fikirlerListener = dbListener.whereField(CATEGORYNAME, isEqualTo: selectedCategory).order(by: EKLENMETARIHI, descending: true)
-            .addSnapshotListener{ (querySnapshot, error) in
-            if let error = error {
-                print("Error getting documents: \(error.localizedDescription)")
-            } else {
-                self.fikirArray.removeAll(keepingCapacity: true)
-                guard let snap = querySnapshot else { return }
-                for veri in snap.documents {
-                    let documentID = veri.documentID
-                    let data = veri.data()
-                    let kullaniciAdi = data[KULLANICIADI] as? String ?? ""
-                    let categoryName = data[CATEGORYNAME] as? String ?? ""
-                    let fikirText = data[FIKIRTEXT] as? String ?? ""
-                    let begeniSayisi = data[BEGENISAYISI] as? Int ?? -1
-                    let yorumSayisi = data[YORUMSAYISI] as? Int ?? -1
-                    let serverDate = data[EKLENMETARIHI] as? Timestamp ?? Timestamp()
-                    let eklenmeTarihi = serverDate.dateValue()
-                    let newFikir = Fikir(kullaniciAdi: kullaniciAdi, fikirText: fikirText, categoryName: categoryName, eklenmeTarihi: eklenmeTarihi, begeniSayisi: begeniSayisi, yorumSayisi: yorumSayisi , documentId: documentID)
-                    self.fikirArray.append(newFikir)
+        if selectedCategory == "Popüler" {
+            fikirlerListener = dbListener.order(by: EKLENMETARIHI, descending: true)
+                .addSnapshotListener{ (querySnapshot, error) in
+                if let error = error {
+                    print("Error getting documents: \(error.localizedDescription)")
+                } else {
+                    self.fikirArray.removeAll(keepingCapacity: true)
+                    self.fikirArray = Fikir.getFikir(snapShot: querySnapshot)
+                    self.tableView.reloadData()
                 }
-                self.tableView.reloadData()
+            }
+        } else {
+            fikirlerListener = dbListener.whereField(CATEGORYNAME, isEqualTo: selectedCategory).order(by: EKLENMETARIHI, descending: true)
+                .addSnapshotListener{ (querySnapshot, error) in
+                if let error = error {
+                    print("Error getting documents: \(error.localizedDescription)")
+                } else {
+                    self.fikirArray.removeAll(keepingCapacity: true)
+                    self.fikirArray = Fikir.getFikir(snapShot: querySnapshot)
+                    self.tableView.reloadData()
+                }
             }
         }
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -68,6 +69,7 @@ class HomeScreenViewController: UIViewController {
         case 1: selectedCategory = "Siyaset"
         case 2: selectedCategory = "Magazin"
         case 3: selectedCategory = "Spor"
+        case 4: selectedCategory = "Popüler"
         default : selectedCategory = "Gündem"
         }
         fikirlerListener.remove()
@@ -84,21 +86,13 @@ extension HomeScreenViewController: UITableViewDelegate ,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let fikir = fikirArray[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? FikirTableViewCell {
-            cell.kullaniciAdiLabel.text = fikir.kullaniciAdi
-            cell.begeniImageView.image = UIImage(systemName: "star")
-            cell.fikirTextLabel.text = fikir.fikirText
-            cell.begeniSayisiLabel.text = String(fikir.begeniSayisi)
-            cell.eklenmeTarihiLabel.text = showTarih(zaman: fikir.eklenmeTarihi)
+            cell.gorunumAyarla(fikir: fikir)
             return cell
         } else {
             return UITableViewCell()
         }
     }
     
-    func showTarih(zaman : Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.YY - HH:mm"
-        return formatter.string(from: zaman)
-    }
+    
 }
 
