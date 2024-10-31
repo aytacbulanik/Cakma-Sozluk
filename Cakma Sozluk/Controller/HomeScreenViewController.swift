@@ -12,9 +12,11 @@ class HomeScreenViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var segmentedCategoryOut: UISegmentedControl!
     private var dbListener : CollectionReference!
     private var fikirArray = [Fikir]()
     private var fikirlerListener : ListenerRegistration!
+    private var selectedCategory : String = "Gündem"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +33,8 @@ class HomeScreenViewController: UIViewController {
     }
     
     func getFikir() {
-        fikirlerListener = dbListener.addSnapshotListener{ (querySnapshot, error) in
+        fikirlerListener = dbListener.whereField(CATEGORYNAME, isEqualTo: selectedCategory).order(by: EKLENMETARIHI, descending: true)
+            .addSnapshotListener{ (querySnapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error.localizedDescription)")
             } else {
@@ -58,6 +61,19 @@ class HomeScreenViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         fikirlerListener.remove()
     }
+    
+    @IBAction func segmentedControllerChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0: selectedCategory = "Gündem"
+        case 1: selectedCategory = "Siyaset"
+        case 2: selectedCategory = "Magazin"
+        case 3: selectedCategory = "Spor"
+        default : selectedCategory = "Gündem"
+        }
+        fikirlerListener.remove()
+        getFikir()
+    }
+    
 }
 
 extension HomeScreenViewController: UITableViewDelegate ,UITableViewDataSource {

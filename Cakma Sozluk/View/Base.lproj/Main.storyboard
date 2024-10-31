@@ -35,6 +35,7 @@
                                 <color key="selectedSegmentTintColor" name="sky"/>
                                 <connections>
                                     <action selector="segmentedChanged:" destination="alv-hf-Lze" eventType="valueChanged" id="KPQ-vG-3h1"/>
+                                    <action selector="segmentedControllerChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="EGv-wD-oTo"/>
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Gq9-1V-fP3">
@@ -133,6 +134,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="segmentedCategoryOut" destination="Gms-Ea-xty" id="jvB-Ec-bpe"/>
                         <outlet property="tableView" destination="Gq9-1V-fP3" id="w8l-2s-dQB"/>
                     </connections>
                 </viewController>
