@@ -41,7 +41,7 @@
                                 <rect key="frame" x="0.0" y="168" width="393" height="650"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="100" id="Kp2-rk-b07">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="100" id="Kp2-rk-b07" customClass="FikirTableViewCell" customModule="Cakma_Sozluk" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kp2-rk-b07" id="4sh-d3-WvS">
@@ -100,6 +100,13 @@
                                                 <constraint firstAttribute="bottom" secondItem="rRh-yn-YA0" secondAttribute="bottom" constant="5" id="oIK-Vf-R3w"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="begeniImageView" destination="wLn-qI-BdP" id="buk-31-4WI"/>
+                                            <outlet property="begeniSayisiLabel" destination="kw3-Vw-kVu" id="1wI-nn-EB8"/>
+                                            <outlet property="eklenmeTarihiLabel" destination="1cJ-xi-80T" id="XXx-TX-hRK"/>
+                                            <outlet property="fikirTextLabel" destination="XPM-hu-3cU" id="zpv-Ap-NGh"/>
+                                            <outlet property="kullaniciAdiLabel" destination="PyM-vO-Q6Y" id="xLP-oU-ZzM"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -123,6 +130,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="Gq9-1V-fP3" id="w8l-2s-dQB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
