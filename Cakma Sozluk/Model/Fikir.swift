@@ -14,13 +14,15 @@ class Fikir {
     private(set) var eklenmeTarihi : Date
     private(set) var begeniSayisi : Int
     private(set) var yorumSayisi : Int
+    private(set) var documentId : String
     
-    init(kullaniciAdi: String, fikirText: String, categoryName: String, eklenmeTarihi: Date, begeniSayisi: Int, yorumSayisi: Int) {
+    init(kullaniciAdi: String, fikirText: String, categoryName: String, eklenmeTarihi: Date, begeniSayisi: Int, yorumSayisi: Int,documentId: String) {
         self.kullaniciAdi = kullaniciAdi
         self.fikirText = fikirText
         self.categoryName = categoryName
         self.eklenmeTarihi = eklenmeTarihi
         self.begeniSayisi = begeniSayisi
         self.yorumSayisi = yorumSayisi
+        self.documentId = documentId
     }
 }

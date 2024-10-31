@@ -37,7 +37,7 @@
                                     <action selector="segmentedChanged:" destination="alv-hf-Lze" eventType="valueChanged" id="KPQ-vG-3h1"/>
                                 </connections>
                             </segmentedControl>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Gq9-1V-fP3">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Gq9-1V-fP3">
                                 <rect key="frame" x="0.0" y="168" width="393" height="650"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -48,7 +48,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kullanıcı Adı" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PyM-vO-Q6Y">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Kullanıcı Adı" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PyM-vO-Q6Y">
                                                     <rect key="frame" x="20" y="16" width="82.333333333333329" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" name="darkenBlue"/>
@@ -82,8 +82,8 @@
                                                         <constraint firstAttribute="height" constant="24" id="GIK-5Y-LaX"/>
                                                     </constraints>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yorum Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XPM-hu-3cU">
-                                                    <rect key="frame" x="20" y="40" width="85.333333333333329" height="20.333333333333329"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Yorum Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XPM-hu-3cU">
+                                                    <rect key="frame" x="20" y="40" width="343" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" name="darkenBlue"/>
                                                     <nil key="highlightedColor"/>
@@ -92,9 +92,11 @@
                                             <constraints>
                                                 <constraint firstItem="PyM-vO-Q6Y" firstAttribute="leading" secondItem="4sh-d3-WvS" secondAttribute="leadingMargin" id="17u-9S-KYn"/>
                                                 <constraint firstItem="rRh-yn-YA0" firstAttribute="leading" secondItem="4sh-d3-WvS" secondAttribute="leadingMargin" id="3Me-qX-zgq"/>
+                                                <constraint firstItem="rRh-yn-YA0" firstAttribute="top" secondItem="XPM-hu-3cU" secondAttribute="bottom" constant="6" id="DYW-Ic-Nld"/>
                                                 <constraint firstItem="XPM-hu-3cU" firstAttribute="leading" secondItem="4sh-d3-WvS" secondAttribute="leadingMargin" id="Dd3-vc-e9g"/>
                                                 <constraint firstItem="PyM-vO-Q6Y" firstAttribute="top" secondItem="4sh-d3-WvS" secondAttribute="topMargin" constant="5" id="MQM-nD-m6y"/>
                                                 <constraint firstItem="1cJ-xi-80T" firstAttribute="top" secondItem="4sh-d3-WvS" secondAttribute="topMargin" constant="5" id="Pm0-t6-jtr"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="XPM-hu-3cU" secondAttribute="trailing" constant="10" id="RWr-iG-9Ew"/>
                                                 <constraint firstItem="1cJ-xi-80T" firstAttribute="leading" secondItem="PyM-vO-Q6Y" secondAttribute="trailing" constant="20" id="YH8-dV-A1D"/>
                                                 <constraint firstItem="XPM-hu-3cU" firstAttribute="top" secondItem="PyM-vO-Q6Y" secondAttribute="bottom" constant="6" id="i0n-QT-r1C"/>
                                                 <constraint firstAttribute="bottom" secondItem="rRh-yn-YA0" secondAttribute="bottom" constant="5" id="oIK-Vf-R3w"/>
