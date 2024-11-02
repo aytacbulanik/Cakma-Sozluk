@@ -45,7 +45,9 @@ class HomeScreenViewController: UIViewController {
                 }
             }
         } else {
-            fikirlerListener = dbListener.whereField(CATEGORYNAME, isEqualTo: selectedCategory).order(by: EKLENMETARIHI, descending: true)
+            fikirlerListener = dbListener
+                .whereField(CATEGORYNAME, isEqualTo: selectedCategory)
+                .order(by: EKLENMETARIHI, descending: true)
                 .addSnapshotListener{ (querySnapshot, error) in
                 if let error = error {
                     print("Error getting documents: \(error.localizedDescription)")
