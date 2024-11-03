@@ -428,14 +428,109 @@
                     <view key="view" contentMode="scaleToFill" id="47Z-1f-epv">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sn8-x4-3oq">
+                                <rect key="frame" x="10" y="773" width="373" height="45"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="viY-bc-xoY">
+                                        <rect key="frame" x="0.0" y="5.6666666666666288" width="373" height="34"/>
+                                        <color key="backgroundColor" name="sky"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9aG-Ts-3rN">
+                                        <rect key="frame" x="348" y="12.666666666666629" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="9hu-pH-9Ze"/>
+                                            <constraint firstAttribute="height" constant="20" id="dl0-gc-Gid"/>
+                                        </constraints>
+                                        <color key="tintColor" name="darkenBlue"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="paperplane.fill" catalog="system"/>
+                                        <connections>
+                                            <action selector="yorumSendButtonPressed:" destination="w2z-wo-XiA" eventType="touchUpInside" id="luQ-Kb-w3E"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="9aG-Ts-3rN" firstAttribute="centerY" secondItem="Sn8-x4-3oq" secondAttribute="centerY" id="Bs2-ep-NmE"/>
+                                    <constraint firstItem="viY-bc-xoY" firstAttribute="leading" secondItem="Sn8-x4-3oq" secondAttribute="leading" id="G1d-Lb-wQF"/>
+                                    <constraint firstAttribute="trailing" secondItem="9aG-Ts-3rN" secondAttribute="trailing" constant="5" id="Pd5-Yz-NlP"/>
+                                    <constraint firstAttribute="trailing" secondItem="viY-bc-xoY" secondAttribute="trailing" id="XeZ-T9-0hg"/>
+                                    <constraint firstAttribute="height" constant="45" id="ltp-Cc-44N"/>
+                                    <constraint firstItem="viY-bc-xoY" firstAttribute="centerY" secondItem="Sn8-x4-3oq" secondAttribute="centerY" id="nbH-gw-C3W"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QFd-uT-MLf">
+                                <rect key="frame" x="0.0" y="103" width="393" height="670"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="yorumCell" id="FsY-Td-ugE" customClass="YorumTableViewCell" customModule="Cakma_Sozluk" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="90"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FsY-Td-ugE" id="KdY-AD-m0g">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="90"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Kullanıcı Adı" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yPC-ah-LBO">
+                                                    <rect key="frame" x="20" y="19" width="82.333333333333329" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" name="darkenBlue"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yorum Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCO-b2-j72">
+                                                    <rect key="frame" x="20" y="50.666666666666664" width="85.333333333333329" height="20.333333333333336"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" name="darkenBlue"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12.09.2024" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5AL-hk-TdU">
+                                                    <rect key="frame" x="117.33333333333331" y="19" width="77" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" name="sky"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="5AL-hk-TdU" firstAttribute="leading" secondItem="yPC-ah-LBO" secondAttribute="trailing" constant="15" id="4oU-uO-pSZ"/>
+                                                <constraint firstItem="yPC-ah-LBO" firstAttribute="top" secondItem="KdY-AD-m0g" secondAttribute="topMargin" constant="8" id="HN7-Cw-SST"/>
+                                                <constraint firstItem="yPC-ah-LBO" firstAttribute="leading" secondItem="KdY-AD-m0g" secondAttribute="leadingMargin" id="HZX-jp-lrQ"/>
+                                                <constraint firstItem="lCO-b2-j72" firstAttribute="leading" secondItem="KdY-AD-m0g" secondAttribute="leadingMargin" id="PMT-48-Raf"/>
+                                                <constraint firstItem="5AL-hk-TdU" firstAttribute="centerY" secondItem="yPC-ah-LBO" secondAttribute="centerY" id="V0S-LO-D18"/>
+                                                <constraint firstItem="lCO-b2-j72" firstAttribute="bottom" secondItem="KdY-AD-m0g" secondAttribute="bottomMargin" constant="-8" id="WQo-8F-FnK"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="eklenmeTarihiLabel" destination="5AL-hk-TdU" id="0sp-Fo-NpD"/>
+                                            <outlet property="kullaniciAdiLabel" destination="yPC-ah-LBO" id="1l1-CP-DZr"/>
+                                            <outlet property="yorumTextLabel" destination="lCO-b2-j72" id="A0X-XG-kwA"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="AKa-yp-6Zz"/>
                         <color key="backgroundColor" name="crema"/>
+                        <constraints>
+                            <constraint firstItem="Sn8-x4-3oq" firstAttribute="bottom" secondItem="AKa-yp-6Zz" secondAttribute="bottom" id="CWA-vI-ZM8"/>
+                            <constraint firstItem="Sn8-x4-3oq" firstAttribute="leading" secondItem="AKa-yp-6Zz" secondAttribute="leading" constant="10" id="DFU-tm-GjJ"/>
+                            <constraint firstItem="QFd-uT-MLf" firstAttribute="top" secondItem="AKa-yp-6Zz" secondAttribute="top" id="DOI-fr-LLm"/>
+                            <constraint firstItem="AKa-yp-6Zz" firstAttribute="trailing" secondItem="Sn8-x4-3oq" secondAttribute="trailing" constant="10" id="NW6-LM-Ejw"/>
+                            <constraint firstItem="Sn8-x4-3oq" firstAttribute="top" secondItem="QFd-uT-MLf" secondAttribute="bottom" id="cpC-Yb-0Ju"/>
+                            <constraint firstItem="AKa-yp-6Zz" firstAttribute="trailing" secondItem="QFd-uT-MLf" secondAttribute="trailing" id="gjP-74-p83"/>
+                            <constraint firstItem="QFd-uT-MLf" firstAttribute="leading" secondItem="AKa-yp-6Zz" secondAttribute="leading" id="zuw-gB-cNO"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JC2-Zu-6Pn"/>
+                    <connections>
+                        <outlet property="tableView" destination="QFd-uT-MLf" id="qps-hT-Pfu"/>
+                        <outlet property="yorumField" destination="viY-bc-xoY" id="HFl-hg-Bbe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uwo-Wr-3Zb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1662" y="751"/>
+            <point key="canvasLocation" x="1661.8320610687022" y="750.70422535211276"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bM0-jv-tet">
@@ -463,6 +558,7 @@
     </scenes>
     <resources>
         <image name="message" catalog="system" width="128" height="116"/>
+        <image name="paperplane.fill" catalog="system" width="128" height="119"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <namedColor name="brand">
             <color red="0.45490196078431372" green="0.60784313725490191" blue="0.76078431372549016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -478,6 +574,9 @@
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

@@ -9,6 +9,9 @@ import UIKit
 
 class YorumViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var yorumField: UITextField!
+    
     var secilenFikir : Fikir!
     
     override func viewDidLoad() {
@@ -19,5 +22,9 @@ class YorumViewController: UIViewController {
     
 
    
-
+    @IBAction func yorumSendButtonPressed(_ sender: UIButton) {
+        
+        
+    }
+    
 }
