@@ -17,6 +17,7 @@ class YorumViewController: UIViewController {
     var secilenFikir : Fikir!
     var yorumArray = [Yorum]()
     var fikirRef : DocumentReference!
+    var yorumListener : ListenerRegistration!
     var kullaniciAdi : String!
     
     override func viewDidLoad() {
@@ -28,6 +29,16 @@ class YorumViewController: UIViewController {
         fikirRef = Firestore.firestore().collection(FIKIRLER).document(secilenFikir.documentId)
         if let adi = Auth.auth().currentUser?.displayName {
             kullaniciAdi = adi
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getYorum()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if yorumListener != nil {
+            yorumListener.remove()
         }
     }
     
@@ -62,8 +73,17 @@ class YorumViewController: UIViewController {
                 self.yorumField.text = ""
             }
         }
-
-        
+    }
+    func getYorum() {
+        Firestore.firestore().collection(FIKIRLER).document(secilenFikir.documentId).collection(YORUMLAR).addSnapshotListener { querySnapshot, error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                self.yorumArray.removeAll(keepingCapacity: true)
+                self.yorumArray = Yorum.yorumlariGetir(snapShot: querySnapshot)
+                self.tableView.reloadData()
+            }
+        }
     }
     
 }
