@@ -13,11 +13,13 @@ class YorumViewController: UIViewController {
     @IBOutlet weak var yorumField: UITextField!
     
     var secilenFikir : Fikir!
+    var yorumArray = [Yorum]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
 
@@ -26,5 +28,23 @@ class YorumViewController: UIViewController {
         
         
     }
+    
+}
+
+extension YorumViewController : UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        yorumArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "yorumCell", for: indexPath) as? YorumTableViewCell {
+            let gecerliYorum = yorumArray[indexPath.row]
+            cell.gorunumAyarla(yorum: gecerliYorum)
+            return cell
+        } else {
+            return UITableViewCell()
+        }
+    }
+    
     
 }

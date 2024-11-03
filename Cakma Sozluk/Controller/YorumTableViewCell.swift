@@ -18,6 +18,17 @@ class YorumTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    func gorunumAyarla(yorum : Yorum) {
+        kullaniciAdiLabel.text = yorum.kullaniciAdi
+        eklenmeTarihiLabel.text = showDate(date: yorum.eklenmeTarihi)
+        yorumTextLabel.text = yorum.yorumText
+    }
+    
+    func showDate(date : Date) -> String{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy hh:mm"
+        let dateString = formatter.string(from: date)
+        return dateString
+    }
     
 }
