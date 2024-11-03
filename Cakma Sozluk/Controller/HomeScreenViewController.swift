@@ -106,6 +106,16 @@ class HomeScreenViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "yorumSegue" {
+            if let hedefVC = segue.destination as? YorumViewController {
+                if let gidenFikir = sender as? Fikir {
+                    hedefVC.secilenFikir = gidenFikir
+                }
+            }
+        }
+    }
+    
     
 }
 
@@ -122,6 +132,11 @@ extension HomeScreenViewController: UITableViewDelegate ,UITableViewDataSource {
         } else {
             return UITableViewCell()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let gidenFikir = fikirArray[indexPath.row]
+        performSegue(withIdentifier: "yorumSegue", sender: gidenFikir)
     }
     
     

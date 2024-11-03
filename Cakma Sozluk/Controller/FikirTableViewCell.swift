@@ -16,6 +16,8 @@ class FikirTableViewCell: UITableViewCell {
     @IBOutlet weak var fikirTextLabel: UILabel!
     @IBOutlet weak var begeniImageView: UIImageView!
     @IBOutlet weak var begeniSayisiLabel: UILabel!
+    @IBOutlet weak var yorumSayisiLabel: UILabel!
+    @IBOutlet weak var yorumImageView: UIImageView!
     var secilenFikir : Fikir!
     
     override func awakeFromNib() {
@@ -32,6 +34,7 @@ class FikirTableViewCell: UITableViewCell {
         fikirTextLabel.text = fikir.fikirText
         begeniSayisiLabel.text = String(fikir.begeniSayisi)
         eklenmeTarihiLabel.text = showTarih(zaman: fikir.eklenmeTarihi)
+        yorumSayisiLabel.text = String(fikir.yorumSayisi)
     }
     
     func showTarih(zaman : Date) -> String {
