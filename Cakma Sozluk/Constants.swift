@@ -19,3 +19,6 @@ let KULLANICILAR = "Kullanicilar"
 let KULLANICIID = "KullaniciId"
 let KULLANICIMAIL = "KullaniciMail"
 
+let YORUMLAR = "Yorumlar"
+let YORUMTEXT = "YorumText"
+
