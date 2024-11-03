@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qeJ-eh-sCC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DRL-WF-Ud9">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -54,7 +54,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e-mail adresi" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KFp-uE-cPU">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KFp-uE-cPU">
                                 <rect key="frame" x="20" y="184" width="353" height="35"/>
                                 <color key="backgroundColor" name="sky"/>
                                 <constraints>
@@ -88,6 +88,89 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y2a-zc-IsO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="827" y="-680"/>
+        </scene>
+        <!--Uye Ol View Controller-->
+        <scene sceneID="apZ-vc-Oj5">
+            <objects>
+                <viewController id="DRL-WF-Ud9" customClass="UyeOlViewController" customModule="Cakma_Sozluk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bJm-6b-oDL">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="r7U-vy-GIs">
+                                <rect key="frame" x="20" y="139" width="353" height="170"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e-mail adresi" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2R0-Yd-Bhm">
+                                        <rect key="frame" x="0.0" y="0.0" width="353" height="35"/>
+                                        <color key="backgroundColor" name="sky"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WXl-5B-5rf">
+                                        <rect key="frame" x="0.0" y="45" width="353" height="35"/>
+                                        <color key="backgroundColor" name="sky"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password again" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4TA-vX-2Mr">
+                                        <rect key="frame" x="0.0" y="90" width="353" height="35"/>
+                                        <color key="backgroundColor" name="sky"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ePF-2J-jbq">
+                                        <rect key="frame" x="0.0" y="135" width="353" height="35"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="goK-r8-xOq">
+                                                <rect key="frame" x="0.0" y="0.0" width="166.66666666666666" height="35"/>
+                                                <color key="backgroundColor" name="darkenBlue"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Üye Ol">
+                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="girisYapButtonPressed:" destination="qeJ-eh-sCC" eventType="touchUpInside" id="a2L-6e-Cjz"/>
+                                                    <action selector="uyeOlButtonPressed:" destination="DRL-WF-Ud9" eventType="touchUpInside" id="srU-ds-dQQ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mYk-8y-5Kv">
+                                                <rect key="frame" x="186.66666666666663" y="0.0" width="166.33333333333337" height="35"/>
+                                                <color key="backgroundColor" name="brand"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Vazgeç">
+                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="vazgecButtonPressed:" destination="DRL-WF-Ud9" eventType="touchUpInside" id="Zap-ES-uuP"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="of8-Y5-wP2"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3Bz-i4-03W"/>
+                        <color key="backgroundColor" name="crema"/>
+                        <constraints>
+                            <constraint firstItem="r7U-vy-GIs" firstAttribute="top" secondItem="3Bz-i4-03W" secondAttribute="top" constant="80" id="kjf-mT-Bhf"/>
+                            <constraint firstItem="3Bz-i4-03W" firstAttribute="trailing" secondItem="r7U-vy-GIs" secondAttribute="trailing" constant="20" id="tuU-MK-wGb"/>
+                            <constraint firstItem="r7U-vy-GIs" firstAttribute="leading" secondItem="3Bz-i4-03W" secondAttribute="leading" constant="20" id="xuW-qd-X9h"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="2R0-Yd-Bhm" id="12s-zT-muh"/>
+                        <outlet property="passwordAgainTextField" destination="4TA-vX-2Mr" id="g1i-KA-jHP"/>
+                        <outlet property="passwordTextField" destination="WXl-5B-5rf" id="IEc-4l-vqJ"/>
+                        <outlet property="uyeOlButtonOut" destination="goK-r8-xOq" id="NY7-79-HQt"/>
+                        <outlet property="vazgeçButtonOut" destination="mYk-8y-5Kv" id="UW5-8Q-h03"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gEk-Yu-d7j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1567" y="-680"/>
         </scene>
         <!--Home Screen View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -337,6 +420,9 @@
     </scenes>
     <resources>
         <image name="star" catalog="system" width="128" height="116"/>
+        <namedColor name="brand">
+            <color red="0.45490196078431372" green="0.60784313725490191" blue="0.76078431372549016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="crema">
             <color red="0.96470588235294119" green="0.95686274509803926" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
