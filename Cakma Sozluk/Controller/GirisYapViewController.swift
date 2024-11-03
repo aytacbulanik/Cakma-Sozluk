@@ -29,7 +29,7 @@ class GirisYapViewController: UIViewController {
             if let error {
                 print(error.localizedDescription)
             } else {
-                print(authDataResult?.additionalUserInfo)
+                self.dismiss(animated: true)
             }
         }
         

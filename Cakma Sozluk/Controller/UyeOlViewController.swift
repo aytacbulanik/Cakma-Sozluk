@@ -61,9 +61,7 @@ class UyeOlViewController: UIViewController {
                         print(error.localizedDescription)
                     }
                 }
-                
-                print(changeRequest?.displayName)
-                print("kullanıcı oluşturuldu")
+                self.dismiss(animated: true)
             }
             
         }
@@ -71,7 +69,7 @@ class UyeOlViewController: UIViewController {
     }
     
     @IBAction func vazgecButtonPressed(_ sender: UIButton) {
-        
+        dismiss(animated: true)
         
     }
     

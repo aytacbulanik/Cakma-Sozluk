@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DRL-WF-Ud9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fMF-JF-NhC">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -13,7 +13,7 @@
         <!--Giris Yap View Controller-->
         <scene sceneID="tIH-S4-Hrb">
             <objects>
-                <viewController id="qeJ-eh-sCC" customClass="GirisYapViewController" customModule="Cakma_Sozluk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="girisYap" id="qeJ-eh-sCC" customClass="GirisYapViewController" customModule="Cakma_Sozluk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W7t-0r-o7u">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -39,6 +39,9 @@
                                         <buttonConfiguration key="configuration" style="plain" title="Üye Ol">
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <segue destination="DRL-WF-Ud9" kind="presentation" modalPresentationStyle="fullScreen" id="pXD-XI-jlN"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -98,7 +101,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="r7U-vy-GIs">
-                                <rect key="frame" x="20" y="139" width="353" height="170"/>
+                                <rect key="frame" x="20" y="80" width="353" height="170"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e-mail adresi" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2R0-Yd-Bhm">
                                         <rect key="frame" x="0.0" y="0.0" width="353" height="35"/>
@@ -160,6 +163,7 @@
                             <constraint firstItem="r7U-vy-GIs" firstAttribute="leading" secondItem="3Bz-i4-03W" secondAttribute="leading" constant="20" id="xuW-qd-X9h"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="lQx-g7-quF"/>
                     <connections>
                         <outlet property="emailTextField" destination="2R0-Yd-Bhm" id="12s-zT-muh"/>
                         <outlet property="passwordAgainTextField" destination="4TA-vX-2Mr" id="g1i-KA-jHP"/>
@@ -202,7 +206,7 @@
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Gq9-1V-fP3">
                                 <rect key="frame" x="0.0" y="168" width="393" height="650"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="crema"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="100" id="Kp2-rk-b07" customClass="FikirTableViewCell" customModule="Cakma_Sozluk" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="100"/>
@@ -265,6 +269,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="rRh-yn-YA0" secondAttribute="bottom" constant="5" id="oIK-Vf-R3w"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" name="crema"/>
                                         <connections>
                                             <outlet property="begeniImageView" destination="wLn-qI-BdP" id="buk-31-4WI"/>
                                             <outlet property="begeniSayisiLabel" destination="kw3-Vw-kVu" id="1wI-nn-EB8"/>
@@ -289,6 +294,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Qtv-7B-IBN">
+                        <barButtonItem key="leftBarButtonItem" title="Çıkış Yap" id="BDx-7w-Qeu">
+                            <connections>
+                                <action selector="cikisYapButtonPressed:" destination="BYZ-38-t0r" id="Zte-CB-nav"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="i9U-V3-9r3">
                             <connections>
                                 <segue destination="alv-hf-Lze" kind="show" id="RSk-2l-eX0"/>
@@ -434,9 +444,6 @@
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseAuth
 
 class HomeScreenViewController: UIViewController {
     
@@ -17,6 +18,7 @@ class HomeScreenViewController: UIViewController {
     private var fikirArray = [Fikir]()
     private var fikirlerListener : ListenerRegistration!
     private var selectedCategory : String = "Gündem"
+    private var userHandle : AuthStateDidChangeListenerHandle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +29,27 @@ class HomeScreenViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        DispatchQueue.main.async {
-            self.getFikir()
+        userHandle = Auth.auth().addStateDidChangeListener({ auth, user in
+            if user == nil {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "girisYap")
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true, completion: nil)
+            } else {
+                DispatchQueue.main.async {
+                    self.getFikir()
+                }
+            }
+        })
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        if fikirlerListener != nil {
+            fikirlerListener.remove()
         }
+        
     }
     
     func getFikir() {
@@ -61,9 +81,7 @@ class HomeScreenViewController: UIViewController {
         
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        fikirlerListener.remove()
-    }
+    
     
     @IBAction func segmentedControllerChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -77,6 +95,17 @@ class HomeScreenViewController: UIViewController {
         fikirlerListener.remove()
         getFikir()
     }
+    
+    @IBAction func cikisYapButtonPressed(_ sender: UIBarButtonItem) {
+        
+        let currentUser = Auth.auth()
+        do {
+            try currentUser.signOut()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     
 }
 
