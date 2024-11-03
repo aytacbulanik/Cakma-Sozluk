@@ -1,25 +1,26 @@
-//
-//  UyeOlViewController.swift
-//  Cakma Sozluk
-//
-//  Created by Aytaç Bulanık on 3.11.2024.
-//
+    //
+    //  UyeOlViewController.swift
+    //  Cakma Sozluk
+    //
+    //  Created by Aytaç Bulanık on 3.11.2024.
+    //
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class UyeOlViewController: UIViewController {
-
+    
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordAgainTextField: UITextField!
     @IBOutlet weak var uyeOlButtonOut: UIButton!
     @IBOutlet weak var vazgeçButtonOut: UIButton!
-    
+    var kullaniciAdi = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         uyeOlButtonOut.layer.cornerRadius = 6
         vazgeçButtonOut.layer.cornerRadius = 6
     }
@@ -35,6 +36,33 @@ class UyeOlViewController: UIViewController {
                 print("Hata: \(error.localizedDescription)")
                 return
             } else {
+                
+                for harf in email {
+                    if harf == "@" {
+                        break
+                    } else {
+                        self.kullaniciAdi += String(harf)
+                    }
+                }
+                let changeRequest = AuthDataResult?.user.createProfileChangeRequest()
+                changeRequest?.displayName = self.kullaniciAdi
+                changeRequest?.commitChanges { error in
+                    if let error {
+                        print(error.localizedDescription)
+                    }
+                }
+                guard let kullaniciID = Auth.auth().currentUser?.uid else { return }
+                Firestore.firestore().collection(KULLANICILAR).document(kullaniciID).setData([
+                    EKLENMETARIHI : FieldValue.serverTimestamp(),
+                    KULLANICIADI : self.kullaniciAdi,
+                    KULLANICIMAIL : email
+                ]) { error in
+                    if let error {
+                        print(error.localizedDescription)
+                    }
+                }
+                
+                print(changeRequest?.displayName)
                 print("kullanıcı oluşturuldu")
             }
             
@@ -43,6 +71,8 @@ class UyeOlViewController: UIViewController {
     }
     
     @IBAction func vazgecButtonPressed(_ sender: UIButton) {
+        
+        
     }
     
     

@@ -14,3 +14,8 @@ let BEGENISAYISI = "BegeniSayisi"
 let YORUMSAYISI = "YorumSayisi"
 let EKLENMETARIHI = "EklenmeTarihi"
 let KULLANICIADI = "KullaniciAdi"
+
+let KULLANICILAR = "Kullanicilar"
+let KULLANICIID = "KullaniciId"
+let KULLANICIMAIL = "KullaniciMail"
+
