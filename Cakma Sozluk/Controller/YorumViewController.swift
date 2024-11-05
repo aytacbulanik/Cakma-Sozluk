@@ -64,7 +64,9 @@ class YorumViewController: UIViewController {
             transection.setData([
                 YORUMTEXT : yorumText,
                 EKLENMETARIHI : FieldValue.serverTimestamp(),
-                KULLANICIADI : self.kullaniciAdi!
+                KULLANICIADI : self.kullaniciAdi!,
+                KULLANICIID : Auth.auth().currentUser!.uid,
+                
             ], forDocument: yeniYorumRef)
             
             return nil

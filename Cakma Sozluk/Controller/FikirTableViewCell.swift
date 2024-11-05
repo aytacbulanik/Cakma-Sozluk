@@ -18,6 +18,8 @@ class FikirTableViewCell: UITableViewCell {
     @IBOutlet weak var begeniSayisiLabel: UILabel!
     @IBOutlet weak var yorumSayisiLabel: UILabel!
     @IBOutlet weak var yorumImageView: UIImageView!
+    
+    @IBOutlet weak var editImageView: UIImageView!
     var secilenFikir : Fikir!
     
     override func awakeFromNib() {

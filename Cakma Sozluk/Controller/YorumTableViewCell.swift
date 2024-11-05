@@ -13,6 +13,7 @@ class YorumTableViewCell: UITableViewCell {
     @IBOutlet weak var kullaniciAdiLabel: UILabel!
     @IBOutlet weak var eklenmeTarihiLabel: UILabel!
     @IBOutlet weak var yorumTextLabel: UILabel!
+    @IBOutlet weak var editImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

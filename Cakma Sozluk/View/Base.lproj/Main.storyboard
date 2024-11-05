@@ -264,20 +264,32 @@
                                                     </constraints>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yorum Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XPM-hu-3cU">
-                                                    <rect key="frame" x="20" y="40" width="343" height="25"/>
+                                                    <rect key="frame" x="20" y="40" width="303" height="25"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" name="darkenBlue"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="AxG-vf-DEP">
+                                                    <rect key="frame" x="333" y="37.666666666666664" width="30" height="25"/>
+                                                    <color key="tintColor" name="darkenBlue"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="4XL-IC-3Iz"/>
+                                                        <constraint firstAttribute="width" constant="30" id="5s8-Lp-U8p"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="Li5-Bg-9vK"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="dmC-Vx-ZNP"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="PyM-vO-Q6Y" firstAttribute="leading" secondItem="4sh-d3-WvS" secondAttribute="leadingMargin" id="17u-9S-KYn"/>
+                                                <constraint firstItem="AxG-vf-DEP" firstAttribute="leading" secondItem="XPM-hu-3cU" secondAttribute="trailing" constant="10" id="36q-p9-eO7"/>
                                                 <constraint firstItem="rRh-yn-YA0" firstAttribute="leading" secondItem="4sh-d3-WvS" secondAttribute="leadingMargin" id="3Me-qX-zgq"/>
                                                 <constraint firstItem="rRh-yn-YA0" firstAttribute="top" secondItem="XPM-hu-3cU" secondAttribute="bottom" constant="6" id="DYW-Ic-Nld"/>
                                                 <constraint firstItem="XPM-hu-3cU" firstAttribute="leading" secondItem="4sh-d3-WvS" secondAttribute="leadingMargin" id="Dd3-vc-e9g"/>
                                                 <constraint firstItem="PyM-vO-Q6Y" firstAttribute="top" secondItem="4sh-d3-WvS" secondAttribute="topMargin" constant="5" id="MQM-nD-m6y"/>
+                                                <constraint firstItem="AxG-vf-DEP" firstAttribute="centerY" secondItem="4sh-d3-WvS" secondAttribute="centerY" id="OdH-uE-TfC"/>
                                                 <constraint firstItem="1cJ-xi-80T" firstAttribute="top" secondItem="4sh-d3-WvS" secondAttribute="topMargin" constant="5" id="Pm0-t6-jtr"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="XPM-hu-3cU" secondAttribute="trailing" constant="10" id="RWr-iG-9Ew"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="AxG-vf-DEP" secondAttribute="trailing" constant="10" id="SfJ-Qk-XY3"/>
                                                 <constraint firstItem="1cJ-xi-80T" firstAttribute="leading" secondItem="PyM-vO-Q6Y" secondAttribute="trailing" constant="20" id="YH8-dV-A1D"/>
                                                 <constraint firstItem="XPM-hu-3cU" firstAttribute="top" secondItem="PyM-vO-Q6Y" secondAttribute="bottom" constant="6" id="i0n-QT-r1C"/>
                                                 <constraint firstAttribute="bottom" secondItem="rRh-yn-YA0" secondAttribute="bottom" constant="5" id="oIK-Vf-R3w"/>
@@ -287,6 +299,7 @@
                                         <connections>
                                             <outlet property="begeniImageView" destination="wLn-qI-BdP" id="buk-31-4WI"/>
                                             <outlet property="begeniSayisiLabel" destination="kw3-Vw-kVu" id="1wI-nn-EB8"/>
+                                            <outlet property="editImageView" destination="AxG-vf-DEP" id="jHD-Ee-oVg"/>
                                             <outlet property="eklenmeTarihiLabel" destination="1cJ-xi-80T" id="XXx-TX-hRK"/>
                                             <outlet property="fikirTextLabel" destination="XPM-hu-3cU" id="zpv-Ap-NGh"/>
                                             <outlet property="kullaniciAdiLabel" destination="PyM-vO-Q6Y" id="xLP-oU-ZzM"/>
@@ -491,17 +504,28 @@
                                                     <color key="textColor" name="sky"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="eJK-KY-DpQ">
+                                                    <rect key="frame" x="353" y="32.666666666666664" width="30" height="25.000000000000014"/>
+                                                    <color key="tintColor" name="darkenBlue"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="MtN-jw-Fs2"/>
+                                                        <constraint firstAttribute="width" constant="30" id="dHg-oP-zdi"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="5AL-hk-TdU" firstAttribute="leading" secondItem="yPC-ah-LBO" secondAttribute="trailing" constant="15" id="4oU-uO-pSZ"/>
+                                                <constraint firstItem="eJK-KY-DpQ" firstAttribute="centerY" secondItem="KdY-AD-m0g" secondAttribute="centerY" id="GIR-eX-Q5A"/>
                                                 <constraint firstItem="yPC-ah-LBO" firstAttribute="top" secondItem="KdY-AD-m0g" secondAttribute="topMargin" constant="8" id="HN7-Cw-SST"/>
                                                 <constraint firstItem="yPC-ah-LBO" firstAttribute="leading" secondItem="KdY-AD-m0g" secondAttribute="leadingMargin" id="HZX-jp-lrQ"/>
+                                                <constraint firstItem="eJK-KY-DpQ" firstAttribute="trailing" secondItem="KdY-AD-m0g" secondAttribute="trailingMargin" constant="10" id="K2e-Hf-DFE"/>
                                                 <constraint firstItem="lCO-b2-j72" firstAttribute="leading" secondItem="KdY-AD-m0g" secondAttribute="leadingMargin" id="PMT-48-Raf"/>
                                                 <constraint firstItem="5AL-hk-TdU" firstAttribute="centerY" secondItem="yPC-ah-LBO" secondAttribute="centerY" id="V0S-LO-D18"/>
                                                 <constraint firstItem="lCO-b2-j72" firstAttribute="bottom" secondItem="KdY-AD-m0g" secondAttribute="bottomMargin" constant="-8" id="WQo-8F-FnK"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="editImageView" destination="eJK-KY-DpQ" id="ONQ-Jb-QsX"/>
                                             <outlet property="eklenmeTarihiLabel" destination="5AL-hk-TdU" id="0sp-Fo-NpD"/>
                                             <outlet property="kullaniciAdiLabel" destination="yPC-ah-LBO" id="1l1-CP-DZr"/>
                                             <outlet property="yorumTextLabel" destination="lCO-b2-j72" id="A0X-XG-kwA"/>
@@ -559,6 +583,7 @@
     <resources>
         <image name="message" catalog="system" width="128" height="116"/>
         <image name="paperplane.fill" catalog="system" width="128" height="119"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <namedColor name="brand">
             <color red="0.45490196078431372" green="0.60784313725490191" blue="0.76078431372549016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

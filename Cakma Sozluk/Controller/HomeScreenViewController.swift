@@ -25,6 +25,7 @@ class HomeScreenViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         dbListener = Firestore.firestore().collection(FIKIRLER)
+        title = Auth.auth().currentUser?.displayName?.uppercased()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

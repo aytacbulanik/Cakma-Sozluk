@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseAuth
 
 class FikirEkleViewController: UIViewController {
     
@@ -22,6 +23,7 @@ class FikirEkleViewController: UIViewController {
         
         paylasButtonOut.layer.cornerRadius = 10
         fikirTextView.layer.cornerRadius = 10
+        kullaniciAdiLabel.text = Auth.auth().currentUser?.displayName
     }
     
     @IBAction func segmentedChanged(_ sender: UISegmentedControl) {
@@ -33,10 +35,11 @@ class FikirEkleViewController: UIViewController {
         db.collection(FIKIRLER).addDocument(data: [
             CATEGORYNAME : chosenCategory,
             FIKIRTEXT : fikirText,
-            KULLANICIADI : "Test kullanıcısı 1",
+            KULLANICIADI : Auth.auth().currentUser?.displayName ?? "",
             BEGENISAYISI : 0,
             YORUMSAYISI : 0,
-            EKLENMETARIHI : FieldValue.serverTimestamp()
+            EKLENMETARIHI : FieldValue.serverTimestamp(),
+            KULLANICIID : Auth.auth().currentUser?.uid ?? ""
         ]) { error  in
             if let error {
                 print(error.localizedDescription)
