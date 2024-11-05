@@ -30,6 +30,8 @@ class YorumViewController: UIViewController {
         if let adi = Auth.auth().currentUser?.displayName {
             kullaniciAdi = adi
         }
+        
+        self.view.klavyeTasima()
     }
     
     override func viewWillAppear(_ animated: Bool) {
