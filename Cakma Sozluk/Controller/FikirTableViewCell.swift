@@ -9,6 +9,10 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 
+protocol FikirDelegate {
+    func seceneklerFikirDelegate(fikir: Fikir)
+}
+
 class FikirTableViewCell: UITableViewCell {
     
     
@@ -22,7 +26,7 @@ class FikirTableViewCell: UITableViewCell {
     
     @IBOutlet weak var editImageView: UIImageView!
     var secilenFikir : Fikir!
-    
+    var delegate : FikirDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
         let tap = UITapGestureRecognizer(target: self, action: #selector(begeniTapped))
@@ -30,7 +34,8 @@ class FikirTableViewCell: UITableViewCell {
         begeniImageView.isUserInteractionEnabled = true
     }
     
-    func gorunumAyarla(fikir : Fikir) {
+    func gorunumAyarla(fikir : Fikir , delegate : FikirDelegate?) {
+        self.delegate = delegate
         secilenFikir = fikir
         kullaniciAdiLabel.text = fikir.kullaniciAdi
         begeniImageView.image = UIImage(systemName: "star")
@@ -48,7 +53,7 @@ class FikirTableViewCell: UITableViewCell {
     }
     
     @objc func editImgPressed() {
-        print(secilenFikir.fikirText)
+        delegate?.seceneklerFikirDelegate(fikir: secilenFikir)
     }
     
     func showTarih(zaman : Date) -> String {

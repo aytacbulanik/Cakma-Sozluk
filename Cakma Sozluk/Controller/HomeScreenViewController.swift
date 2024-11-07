@@ -128,7 +128,7 @@ extension HomeScreenViewController: UITableViewDelegate ,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let fikir = fikirArray[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? FikirTableViewCell {
-            cell.gorunumAyarla(fikir: fikir)
+            cell.gorunumAyarla(fikir: fikir , delegate: self)
             return cell
         } else {
             return UITableViewCell()
@@ -138,6 +138,14 @@ extension HomeScreenViewController: UITableViewDelegate ,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let gidenFikir = fikirArray[indexPath.row]
         performSegue(withIdentifier: "yorumSegue", sender: gidenFikir)
+    }
+    
+    
+}
+
+extension HomeScreenViewController : FikirDelegate  {
+    func seceneklerFikirDelegate(fikir: Fikir) {
+        print(fikir.fikirText)
     }
     
     
