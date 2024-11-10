@@ -111,7 +111,43 @@ extension YorumViewController : UITableViewDelegate, UITableViewDataSource {
 
 extension YorumViewController : YorumDelegate {
     func secenelerYorumDelegate(yorum: Yorum) {
-        print(yorum.yorumText!)
+        let alert = UIAlertController(title: "Yorum için ne yapmak istersiniz?", message: nil, preferredStyle: .actionSheet)
+        let silButton = UIAlertAction(title: "SİL", style: .default) { action in
+            
+            Firestore.firestore().runTransaction { (transaction, error) -> Any?  in
+                let secilenFikirKayit : DocumentSnapshot
+                
+                do {
+                    try secilenFikirKayit = transaction.getDocument( Firestore.firestore().collection(FIKIRLER).document(self.secilenFikir.documentId))
+                }catch let hata as NSError {
+                    debugPrint(hata.localizedDescription)
+                    return nil
+                }
+                
+                guard let eskiYorumSayısı = secilenFikirKayit.data()?[YORUMSAYISI] as? Int else { return nil }
+                transaction.updateData([YORUMSAYISI : eskiYorumSayısı - 1], forDocument: self.fikirRef)
+                
+                let silinecekYorumRef = Firestore.firestore().collection(FIKIRLER).document(self.secilenFikir.documentId).collection(YORUMLAR).document(yorum.documentId)
+                transaction.deleteDocument(silinecekYorumRef)
+                return nil
+            } completion: { nesne, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
+
+        }
+        let duzenleButton = UIAlertAction(title: "DÜZENLE", style: .default) { action in
+            print(action)
+        }
+        let cancelButton = UIAlertAction(title: "İPTAL", style: .cancel) { action in
+            print(action)
+        }
+        alert.addAction(duzenleButton)
+        alert.addAction(silButton)
+        alert.addAction(cancelButton)
+        present(alert, animated: true)
+        
     }
     
 }
