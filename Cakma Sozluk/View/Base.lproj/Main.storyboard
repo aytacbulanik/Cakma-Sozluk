@@ -550,11 +550,66 @@
                     <connections>
                         <outlet property="tableView" destination="QFd-uT-MLf" id="qps-hT-Pfu"/>
                         <outlet property="yorumField" destination="viY-bc-xoY" id="HFl-hg-Bbe"/>
+                        <segue destination="6uq-LD-red" kind="show" identifier="yorumDüzenleSegue" id="kMk-pU-nMC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uwo-Wr-3Zb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1661.8320610687022" y="750.70422535211276"/>
+        </scene>
+        <!--Yorum Duzenle View Controller-->
+        <scene sceneID="8Sm-RW-5c4">
+            <objects>
+                <viewController id="6uq-LD-red" customClass="YorumDuzenleViewController" customModule="Cakma_Sozluk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ra9-ka-OMl">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dt4-6E-vBi">
+                                <rect key="frame" x="10" y="113" width="373" height="150"/>
+                                <color key="backgroundColor" name="sky"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="Yuv-F1-7xa"/>
+                                </constraints>
+                                <color key="textColor" name="crema"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prl-fX-0gi">
+                                <rect key="frame" x="131.66666666666666" y="283" width="129.99999999999997" height="40"/>
+                                <color key="backgroundColor" name="darkenBlue"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="7dp-NG-te0"/>
+                                    <constraint firstAttribute="height" constant="40" id="iTn-R1-FB6"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Güncelle">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="guncelleButtonPressed:" destination="6uq-LD-red" eventType="touchUpInside" id="9Zc-6U-aGD"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="CZ6-6w-elV"/>
+                        <color key="backgroundColor" name="crema"/>
+                        <constraints>
+                            <constraint firstItem="prl-fX-0gi" firstAttribute="centerX" secondItem="Ra9-ka-OMl" secondAttribute="centerX" id="bgK-Tb-9sl"/>
+                            <constraint firstItem="dt4-6E-vBi" firstAttribute="leading" secondItem="CZ6-6w-elV" secondAttribute="leading" constant="10" id="cal-xp-DKh"/>
+                            <constraint firstItem="prl-fX-0gi" firstAttribute="top" secondItem="dt4-6E-vBi" secondAttribute="bottom" constant="20" id="kkS-eJ-0Xc"/>
+                            <constraint firstItem="dt4-6E-vBi" firstAttribute="top" secondItem="CZ6-6w-elV" secondAttribute="top" constant="10" id="pXy-I5-a5o"/>
+                            <constraint firstItem="CZ6-6w-elV" firstAttribute="trailing" secondItem="dt4-6E-vBi" secondAttribute="trailing" constant="10" id="xs7-5c-nFZ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="tmQ-jp-MJS"/>
+                    <connections>
+                        <outlet property="yorumGuncelleButtonOut" destination="prl-fX-0gi" id="fNX-7U-DaB"/>
+                        <outlet property="yorumTextView" destination="dt4-6E-vBi" id="vsL-fO-vPo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FVp-Er-IcP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2589" y="751"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bM0-jv-tet">
