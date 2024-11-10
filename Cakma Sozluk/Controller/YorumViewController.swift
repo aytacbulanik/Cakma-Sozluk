@@ -90,6 +90,16 @@ class YorumViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "yorumDüzenleSegue" {
+            if let hedefVC = segue.destination as? YorumDuzenleViewController {
+                if let gidecekYorumVerisi = sender as? (gelenYorum: Yorum, gelenFikir: Fikir) {
+                    hedefVC.yorumVerisi = gidecekYorumVerisi
+                }
+            }
+        }
+    }
+    
 }
 
 extension YorumViewController : UITableViewDelegate, UITableViewDataSource {
@@ -139,29 +149,7 @@ extension YorumViewController : YorumDelegate {
         }
         let duzenleButton = UIAlertAction(title: "DÜZENLE", style: .default) { action in
             
-            Firestore.firestore().runTransaction { (transaction, error) -> Any? in
-                let secilenFikirKayit : DocumentSnapshot
-                
-                do {
-                    try secilenFikirKayit = transaction.getDocument( Firestore.firestore().collection(FIKIRLER).document(self.secilenFikir.documentId).collection(YORUMLAR).document(yorum.documentId))
-                }catch let hata as NSError {
-                    debugPrint(hata.localizedDescription)
-                    return nil
-                }
-                
-                guard let eskiYorum = secilenFikirKayit.data()?[YORUMTEXT] as? [String : Any] else { return nil }
-                print(eskiYorum)
-                
-                return nil
-            } completion: { nesne, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                }
-            }
-
-            
-            
-            
+            self.performSegue(withIdentifier: "yorumDüzenleSegue", sender: (yorum , self.secilenFikir))
             
         }
         let cancelButton = UIAlertAction(title: "İPTAL", style: .cancel) { action in
