@@ -57,27 +57,27 @@ class HomeScreenViewController: UIViewController {
         if selectedCategory == "Popüler" {
             fikirlerListener = dbListener.order(by: EKLENMETARIHI, descending: true)
                 .addSnapshotListener{ (querySnapshot, error) in
-                if let error = error {
-                    print("Error getting documents: \(error.localizedDescription)")
-                } else {
-                    self.fikirArray.removeAll(keepingCapacity: true)
-                    self.fikirArray = Fikir.getFikir(snapShot: querySnapshot)
-                    self.tableView.reloadData()
+                    if let error = error {
+                        print("Error getting documents: \(error.localizedDescription)")
+                    } else {
+                        self.fikirArray.removeAll(keepingCapacity: true)
+                        self.fikirArray = Fikir.getFikir(snapShot: querySnapshot)
+                        self.tableView.reloadData()
+                    }
                 }
-            }
         } else {
             fikirlerListener = dbListener
                 .whereField(CATEGORYNAME, isEqualTo: selectedCategory)
                 .order(by: EKLENMETARIHI, descending: true)
                 .addSnapshotListener{ (querySnapshot, error) in
-                if let error = error {
-                    print("Error getting documents: \(error.localizedDescription)")
-                } else {
-                    self.fikirArray.removeAll(keepingCapacity: true)
-                    self.fikirArray = Fikir.getFikir(snapShot: querySnapshot)
-                    self.tableView.reloadData()
+                    if let error = error {
+                        print("Error getting documents: \(error.localizedDescription)")
+                    } else {
+                        self.fikirArray.removeAll(keepingCapacity: true)
+                        self.fikirArray = Fikir.getFikir(snapShot: querySnapshot)
+                        self.tableView.reloadData()
+                    }
                 }
-            }
         }
         
     }
@@ -145,9 +145,56 @@ extension HomeScreenViewController: UITableViewDelegate ,UITableViewDataSource {
 
 extension HomeScreenViewController : FikirDelegate  {
     func seceneklerFikirDelegate(fikir: Fikir) {
-        print(fikir.fikirText)
+        let alert = UIAlertController(title: "Fikri Silmek istiyor musunuz?", message: nil, preferredStyle: .actionSheet)
+        
+        let silAction = UIAlertAction(title: "Fikri Sil", style: .default) { action in
+            let yorumlarCollRef = Firestore.firestore().collection(FIKIRLER).document(fikir.documentId).collection(YORUMLAR)
+            self.yorumlariSil(yorumCollection: yorumlarCollRef) { (hata) in
+                if let hata = hata {
+                    debugPrint("tüm yorumları silerken hata oluştu : \(hata.localizedDescription)")
+                }else {
+                    Firestore.firestore().collection(FIKIRLER).document(fikir.documentId).delete { (hata) in
+                        if let hata = hata {
+                            debugPrint("bu fikri silerken hata oluştu : \(hata.localizedDescription)")
+                        }else {
+                            alert.dismiss(animated: true, completion: nil)
+                        }
+                    }
+                }
+            }
+            
+        }
+        
+        let iptalAction = UIAlertAction(title: "İptal", style: .cancel)
+        alert.addAction(silAction)
+        alert.addAction(iptalAction)
+        
+        self.present(alert, animated: true)
     }
     
+    func yorumlariSil(yorumCollection : CollectionReference , silinecekKayitSayisi : Int = 100 , completion : @escaping (Error?) -> ()) {
+        
+        yorumCollection.limit(to: silinecekKayitSayisi).getDocuments(completion: {(kayitSetleri , hata) in
+            guard let kayitSetleri = kayitSetleri else {
+                completion(hata)
+                return
+            }
+            guard kayitSetleri.count > 0 else {
+                completion(nil)
+                return
+            }
+            let batch = yorumCollection.firestore.batch() //birden fazla write işlemi yapmak için bunu kullancağız.
+            kayitSetleri.documents.forEach { batch.deleteDocument($0.reference)
+            }
+            batch.commit { batchHata in
+                if let hata = batchHata {
+                    completion(hata)
+                } else {
+                    self.yorumlariSil(yorumCollection: yorumCollection, silinecekKayitSayisi: silinecekKayitSayisi, completion: completion)
+                }
+            }
+        })
+    }
     
 }
 
