@@ -22,4 +22,5 @@ let KULLANICIMAIL = "KullaniciMail"
 let YORUMLAR = "Yorumlar"
 let YORUMTEXT = "YorumText"
 
+let BEGENILER = "Begeniler"
 

@@ -27,6 +27,8 @@ class FikirTableViewCell: UITableViewCell {
     @IBOutlet weak var editImageView: UIImageView!
     var secilenFikir : Fikir!
     var delegate : FikirDelegate?
+    var begeniler = [Begeni]()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         let tap = UITapGestureRecognizer(target: self, action: #selector(begeniTapped))
@@ -50,6 +52,7 @@ class FikirTableViewCell: UITableViewCell {
             let tap = UITapGestureRecognizer(target: self, action: #selector(editImgPressed))
             editImageView.addGestureRecognizer(tap)
         }
+        begeniSorgu()
     }
     
     @objc func editImgPressed() {
@@ -62,10 +65,27 @@ class FikirTableViewCell: UITableViewCell {
         return formatter.string(from: zaman)
     }
     
+    func begeniSorgu() {
+        let begeniSorgu = Firestore.firestore().collection(FIKIRLER).document(self.secilenFikir.documentId).collection(BEGENILER).whereField(KULLANICIID, isEqualTo: Auth.auth().currentUser?.uid ?? "")
+        
+        begeniSorgu.getDocuments { snapshot, error in
+            if let error = error {
+                print("Error fetching documents: \(error)")
+            } else {
+                self.begeniler =  Begeni.begeniGetir(snapshot: snapshot)
+                
+                if self.begeniler.count > 0 {
+                    self.begeniImageView.image = UIImage(systemName: "star.fill")
+                }else {
+                    self.begeniImageView.image = UIImage(systemName: "star")
+                }
+            }
+            
+        }
+    }
+    
     @objc func begeniTapped() {
-        Firestore.firestore().collection(FIKIRLER).document(secilenFikir.documentId).setData([
-            BEGENISAYISI : secilenFikir.begeniSayisi + 1]
-                                                                                             , merge: true)
+       
     }
     
     
