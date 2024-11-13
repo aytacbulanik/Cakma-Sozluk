@@ -55,7 +55,7 @@ class HomeScreenViewController: UIViewController {
     
     func getFikir() {
         if selectedCategory == "Popüler" {
-            fikirlerListener = dbListener.order(by: EKLENMETARIHI, descending: true)
+            fikirlerListener = dbListener.yeniWhereSorgum()
                 .addSnapshotListener{ (querySnapshot, error) in
                     if let error = error {
                         print("Error getting documents: \(error.localizedDescription)")
