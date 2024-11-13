@@ -80,12 +80,43 @@ class FikirTableViewCell: UITableViewCell {
                     self.begeniImageView.image = UIImage(systemName: "star")
                 }
             }
-            
         }
     }
     
     @objc func begeniTapped() {
-       
+        Firestore.firestore().runTransaction { transaction, error -> Any? in
+            let secilenFikirKayit : DocumentSnapshot
+            
+            do {
+                try secilenFikirKayit =  transaction.getDocument(Firestore.firestore().collection(FIKIRLER).document(self.secilenFikir.documentId))
+            } catch let hata as NSError {
+                print(hata.localizedDescription)
+                return nil
+            }
+            
+            guard let eskiBegeniSayisi = secilenFikirKayit.data()?[BEGENISAYISI] as? Int else {return nil}
+            let secilenFikirRef = Firestore.firestore().collection(FIKIRLER).document(self.secilenFikir.documentId)
+            
+            if self.begeniler.count > 0 {
+                transaction.updateData([BEGENISAYISI : eskiBegeniSayisi - 1], forDocument: secilenFikirRef)
+                let eskiBegeniRef = Firestore.firestore().collection(FIKIRLER).document(self.secilenFikir.documentId).collection(BEGENILER).document(self.begeniler[0].documentId)
+                transaction.deleteDocument(eskiBegeniRef)
+            } else {
+                transaction.updateData([BEGENISAYISI : eskiBegeniSayisi + 1], forDocument: secilenFikirRef)
+                
+                let yeniBegeniRef = Firestore.firestore().collection(FIKIRLER).document(self.secilenFikir.documentId).collection(BEGENILER).document()
+                transaction.setData([KULLANICIID : Auth.auth().currentUser?.uid ?? ""], forDocument: yeniBegeniRef)
+            }
+            
+            return nil
+        } completion: { nesne, error in
+            if let error {
+                print(error.localizedDescription)
+            }
+            
+            
+        }
+
     }
     
     
