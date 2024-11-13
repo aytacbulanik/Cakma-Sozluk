@@ -149,19 +149,27 @@ extension HomeScreenViewController : FikirDelegate  {
         
         let silAction = UIAlertAction(title: "Fikri Sil", style: .default) { action in
             let yorumlarCollRef = Firestore.firestore().collection(FIKIRLER).document(fikir.documentId).collection(YORUMLAR)
-            self.yorumlariSil(yorumCollection: yorumlarCollRef) { (hata) in
-                if let hata = hata {
-                    debugPrint("tüm yorumları silerken hata oluştu : \(hata.localizedDescription)")
+            let begenilerCollRef = Firestore.firestore().collection(FIKIRLER).document(fikir.documentId).collection(BEGENILER)
+            self.tumAltCollectionSil(collection: begenilerCollRef) { error in
+                if let error = error {
+                    print(error.localizedDescription)
                 }else {
-                    Firestore.firestore().collection(FIKIRLER).document(fikir.documentId).delete { (hata) in
+                    self.tumAltCollectionSil(collection: yorumlarCollRef) { (hata) in
                         if let hata = hata {
-                            debugPrint("bu fikri silerken hata oluştu : \(hata.localizedDescription)")
+                            debugPrint("tüm yorumları silerken hata oluştu : \(hata.localizedDescription)")
                         }else {
-                            alert.dismiss(animated: true, completion: nil)
+                            Firestore.firestore().collection(FIKIRLER).document(fikir.documentId).delete { (hata) in
+                                if let hata = hata {
+                                    debugPrint("bu fikri silerken hata oluştu : \(hata.localizedDescription)")
+                                }else {
+                                    alert.dismiss(animated: true, completion: nil)
+                                }
+                            }
                         }
                     }
                 }
             }
+            
             
         }
         
@@ -172,9 +180,9 @@ extension HomeScreenViewController : FikirDelegate  {
         self.present(alert, animated: true)
     }
     
-    func yorumlariSil(yorumCollection : CollectionReference , silinecekKayitSayisi : Int = 100 , completion : @escaping (Error?) -> ()) {
+    func tumAltCollectionSil(collection : CollectionReference , silinecekKayitSayisi : Int = 100 , completion : @escaping (Error?) -> ()) {
         
-        yorumCollection.limit(to: silinecekKayitSayisi).getDocuments(completion: {(kayitSetleri , hata) in
+        collection.limit(to: silinecekKayitSayisi).getDocuments(completion: {(kayitSetleri , hata) in
             guard let kayitSetleri = kayitSetleri else {
                 completion(hata)
                 return
@@ -183,14 +191,14 @@ extension HomeScreenViewController : FikirDelegate  {
                 completion(nil)
                 return
             }
-            let batch = yorumCollection.firestore.batch() //birden fazla write işlemi yapmak için bunu kullancağız.
+            let batch = collection.firestore.batch() //birden fazla write işlemi yapmak için bunu kullancağız.
             kayitSetleri.documents.forEach { batch.deleteDocument($0.reference)
             }
             batch.commit { batchHata in
                 if let hata = batchHata {
                     completion(hata)
                 } else {
-                    self.yorumlariSil(yorumCollection: yorumCollection, silinecekKayitSayisi: silinecekKayitSayisi, completion: completion)
+                    self.tumAltCollectionSil(collection: collection, silinecekKayitSayisi: silinecekKayitSayisi, completion: completion)
                 }
             }
         })
